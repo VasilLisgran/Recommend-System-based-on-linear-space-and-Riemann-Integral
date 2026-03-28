@@ -16,6 +16,10 @@ public class Vector {
         return vector.size();
     }
 
+    public void set(int index, double value) {
+        vector.set(index, value);
+    }
+
     public double get(int index) {
         return vector.get(index);
     }
@@ -68,6 +72,14 @@ public class Vector {
     public double Cosine(Vector other){
 
         return (Dot(other)/(this.Norm() * other.Norm()));
+    }
+
+    public static Vector zero(int dimension) {
+        ArrayList<Double> coords = new ArrayList<>();
+        for (int i = 0; i < dimension; i++) {
+            coords.add(0.0);
+        }
+        return new Vector(coords);
     }
 
 }

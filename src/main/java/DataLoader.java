@@ -38,7 +38,7 @@ public class DataLoader {
         }
     }
 
-    public static ArrayList<Event> loadUsersHistory(String filePath){
+    public ArrayList<Event> loadUsersHistory(String filePath){
         ArrayList<Event> history = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))){
