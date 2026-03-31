@@ -13,7 +13,6 @@ public class DataLoader {
     public static Map<String, Vector> getBasis() { return basis; }
     private static List<String> categoryList = new ArrayList<>();
 
-
     // Reading the file of categories
     public static void loadBasis(String filePath, int dimension) throws IOException{
 

@@ -4,25 +4,15 @@ public class Vector {
     ArrayList<Double> vector = new ArrayList<Double>();
 
     public Vector(){ }
-    public Vector(ArrayList<Double> vector){
-        this.vector = vector;
-    }
+    public Vector(ArrayList<Double> vector){ this.vector = vector; }
 
-    public ArrayList<Double> getCoordinates() {
-        return vector;
-    }
+    public ArrayList<Double> getCoordinates() { return vector; }
 
-    public int Size(){
-        return vector.size();
-    }
+    public int Size(){ return vector.size(); }
 
-    public void set(int index, double value) {
-        vector.set(index, value);
-    }
+    public void set(int index, double value) { vector.set(index, value); }
 
-    public double get(int index) {
-        return vector.get(index);
-    }
+    public double get(int index) { return vector.get(index); }
 
     public Vector Sum(Vector other){
         if(other.Size() != this.Size()){

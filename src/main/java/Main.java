@@ -34,6 +34,9 @@ class Main{
             System.out.println("\nПолный вектор:");
             System.out.println(user1.getVector().getCoordinates());
 
+            System.out.println("\n####################################################################\n");
+
+            user1.getRecommendations(10);
         }
         catch (IOException e) {
             System.out.println("Ошибка при загрузке: " + e.getMessage());

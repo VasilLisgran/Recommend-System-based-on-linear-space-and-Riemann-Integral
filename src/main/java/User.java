@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 // User class
 public class User {
@@ -56,6 +57,25 @@ public class User {
             if (coords.get(i) > 0) {
                 System.out.printf("  %s: %.0f мин%n", categories.get(i), coords.get(i));
             }
+        }
+    }
+
+    public void getRecommendations(int topN){
+        System.out.println("RECOMMENDATIONS");
+        Map<String, Vector> basis = DataLoader.getBasis();
+        List<Map.Entry<String, Double>> scores = new ArrayList<>();
+
+        for(Map.Entry<String, Vector> entry : basis.entrySet()){
+            String categoryName = entry.getKey();
+            Vector categoryVector = entry.getValue();
+
+            double cos = this.getVector().Cosine(categoryVector);
+
+            scores.add(Map.entry(categoryName, cos));
+        }
+        for (int i = 0; i < Math.min(topN, scores.size()); i++) {
+            System.out.printf("  %d. %s (схожесть: %.3f)%n",
+                    i+1, scores.get(i).getKey(), scores.get(i).getValue());
         }
     }
 
