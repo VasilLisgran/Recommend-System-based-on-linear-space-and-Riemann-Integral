@@ -1,4 +1,6 @@
 import java.time.LocalDate;
+
+// User's events : what did user do?
 public class Event {
     private LocalDate date;
     private int contentId;

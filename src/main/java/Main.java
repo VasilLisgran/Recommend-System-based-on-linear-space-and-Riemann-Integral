@@ -1,44 +1,38 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 class Main{
     static void main() throws IOException {
         try {
             DataLoader dt = new DataLoader();
 
-            DataLoader.loadBasis("src/main/resources/categories.txt");
+            DataLoader.loadBasis("src/main/resources/categories.txt", 10);
 
             Map<String, Vector> basis = DataLoader.getBasis();
 
-            for(Map.Entry<String, Vector> entry : basis.entrySet()){
-                System.out.print(entry.getKey());
-                System.out.println();
-                Vector v = entry.getValue();
+            // Выводим категории в порядке их индексов
+            List<String> categories = new ArrayList<>(basis.keySet());
+            for (int i = 0; i < categories.size(); i++) {
+                String category = categories.get(i);
+                Vector v = basis.get(category);
+                System.out.println(i + ". " + category);
                 System.out.println(v.getCoordinates());
             }
 
-           var history = dt.loadUsersHistory("src/main/resources/Bob");
+            System.out.println("\n####################################################################");
 
-            for (Event e : history){
-                System.out.println(e.getDate() + " " + e.getContentId() + " " + e.getWatchTime());
-            }
+            User user1 = new User("Alice", 10);
+            dt.loadUsersHistory(user1, "src/main/resources/Bob");
 
-            User user1 = new User("Alice", history);
-            Vector c = user1.CalculateVector(history, 10);
+            user1.loadHistory(user1.getHistory());
 
-            ArrayList<Double> coordinates = c.getCoordinates();
-            for (int i = 0; i < coordinates.size(); i++) {
-                double value = coordinates.get(i);
-                if (value > 0) { // Выводим только ненулевые значения
-                    System.out.printf("  Категория %d: %.1f минут\n", i, value);
-                }
-            }
+            user1.showVector();
 
             // Выводим полный вектор
             System.out.println("\nПолный вектор:");
-            System.out.println(c.getCoordinates());
+            System.out.println(user1.getVector().getCoordinates());
 
         }
         catch (IOException e) {
