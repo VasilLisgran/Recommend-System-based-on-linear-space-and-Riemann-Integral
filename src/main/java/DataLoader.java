@@ -9,21 +9,19 @@ import java.util.Map;
 
 public class DataLoader {
     private static final Map<String, Vector> basis = new HashMap<>(); // Our basis
-
-    public static Map<String, Vector> getBasis() { return basis; }
-    private static List<String> categoryList = new ArrayList<>();
+    private static final List<String> categoryList = new ArrayList<>();
 
     // Reading the file of categories
     public static void loadBasis(String filePath, int dimension) throws IOException{
 
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) { // Trying to read the file
             int index = 0;
             String line;
             while ((line = br.readLine())!= null){
                 ArrayList<Double> list = new ArrayList<>();
                 for (int i = 0; i < dimension; i++) {
-                    if(i == index) list.add(1.0); // Creating basis vectors
-                    else list.add(0.0);
+                    if(i == index) list.add(1.0);   // Creating basis vectors (coordinate with value 1)
+                    else list.add(0.0);             // Creating basis vectors (coordinate with value 0)
                 }
                 Vector vector = new Vector(list);
                 basis.put(line, vector);
@@ -57,7 +55,6 @@ public class DataLoader {
         }
     }
 
-    public static List<String> getCategoryList() {
-        return categoryList;
-    }
+    public static List<String> getCategoryList() { return categoryList; }
+    public static Map<String, Vector> getBasis() { return basis; }
 }
