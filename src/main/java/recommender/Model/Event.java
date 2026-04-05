@@ -1,3 +1,5 @@
+package recommender.Model;
+
 import java.time.LocalDate;
 
 // User's events : what did user do?

@@ -1,3 +1,6 @@
+package recommender.ContentLoader;
+
+import recommender.Model.Vector;
 import java.util.List;
 
 // Content Vector

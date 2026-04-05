@@ -1,10 +1,31 @@
-технологии
-спорт
-кулинария
-кино
-музыка
-наука
-путешествия
-игры
-мода
-политика
+Film & Animation
+Autos & Vehicles
+Music
+Pets & Animals
+Sports
+Short Movies
+Travel & Events
+Gaming
+Videoblogging
+People & Blogs
+Comedy
+Entertainment
+News & Politics
+Howto & Style
+Education
+Science & Technology
+Nonprofits & Activism
+Movies
+Anime/Animation
+Action/Adventure
+Classics
+Comedy Movies
+Documentary
+Drama
+Family
+Foreign
+Horror
+Sci-Fi/Fantasy
+Thriller
+Shows
+Trailers

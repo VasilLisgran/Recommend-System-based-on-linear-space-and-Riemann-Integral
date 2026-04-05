@@ -1,3 +1,7 @@
+package recommender.Model;
+
+import recommender.ContentLoader.DataLoader;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -7,7 +11,6 @@ public class User {
     private String name;                // Name
     private Vector userVector;          // User's vector of content
     private ArrayList<Event> history;   // User's history
-    private Map<Integer, LocalDate> lastWatchDate;  // когда последний раз обновляли категорию
 
     private double lambda = 0.95;        // затухание в день
 
@@ -81,7 +84,7 @@ public class User {
                     // 3. Calculate the contribution
                     long age = ChronoUnit.DAYS.between(date, today);
                     double decay = Math.pow(lambda, age);
-                    double contribution = watchTime * decay * dynamic;
+                    double contribution = decay * dynamic;
                     total += contribution;
 
                     System.out.printf("  %s: %d min, age %d days, λ^age=%.3f, dynamic=%.2f, contribution=%.2f%n",
