@@ -31,7 +31,7 @@ public class YouTubeAuth {
     // Scopes defines which data can we read (readonly)
     private static final List<String> SCOPES = List.of(
             "https://www.googleapis.com/auth/youtube.readonly",
-            "https://www.googleapis.com/auth/youtube.force-ssl"  // ← нужно для HL (истории)
+            "https://www.googleapis.com/auth/youtube.force-ssl"  // History of liked videos
     );
 
     /**
@@ -50,7 +50,6 @@ public class YouTubeAuth {
         if (in == null) {
             throw new IOException("File not found in resources: " + CLIENT_SECRETS_PATH);
         }
-
 
         // 2. Loading secrets from JSON-file
         GoogleClientSecrets secrets = GoogleClientSecrets.load(

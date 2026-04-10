@@ -18,7 +18,6 @@ public class YouTubeDataLoader {
 
     private final YouTube youtube;
 
-    // Используем HashMap для Java 8
     private static final Map<String, String> CATEGORY_ID_TO_NAME = new HashMap<>();
 
     static {
@@ -50,7 +49,7 @@ public class YouTubeDataLoader {
      * @param maxEvents is max count of events (0 = all)
      * @return list of Event for user
      */
-    // Добавьте этот метод в класс YouTubeDataLoader
+
     public List<Event> fetchLikedVideos(int maxEvents) throws IOException {
         List<Event> events = new ArrayList<>();
         String pageToken = null;
@@ -59,26 +58,28 @@ public class YouTubeDataLoader {
         System.out.println("=====================================");
 
         do {
+            // Make the API request to get MetaData
             YouTube.PlaylistItems.List request = youtube.playlistItems()
                     .list(Arrays.asList("snippet", "contentDetails"));
 
-            request.setPlaylistId("LL");  // LL = Liked Videos
+            request.setPlaylistId("LL");  // LL = Liked Videos playlist
             request.setMaxResults(50L);
             request.setPageToken(pageToken);
 
-            PlaylistItemListResponse response = request.execute();
+            PlaylistItemListResponse response = request.execute();  // Block the code to get information
 
             System.out.println("📄 Page loaded: " + response.getItems().size() + " items");
 
             for (PlaylistItem item : response.getItems()) {
+                // Getting Info
                 String videoId = item.getContentDetails().getVideoId();
                 String title = item.getSnippet().getTitle();
                 String publishedAt = item.getSnippet().getPublishedAt().toString();
 
-                System.out.println("\n📺 Liked video: " + title);
+                System.out.println("\nLiked video: " + title);
                 System.out.println("   Date liked: " + publishedAt);
 
-                // Получаем детали видео
+                // Getting MetaData Info
                 Video video = getVideoDetails(videoId);
                 if (video != null) {
                     String categoryId = video.getSnippet().getCategoryId();
@@ -89,8 +90,10 @@ public class YouTubeDataLoader {
                     System.out.println("   Category name: " + categoryName);
                     System.out.println("   Video duration: " + watchTime + " min");
 
-                    // Конвертируем в индекс категории
+
                     int categoryIndex = getCategoryIndex(categoryId);
+
+                    // Create an Event
                     if (categoryIndex != -1 && watchTime > 0) {
                         LocalDate date = LocalDate.parse(publishedAt, DateTimeFormatter.ISO_DATE_TIME);
                         Event event = new Event(date, categoryIndex, watchTime);
@@ -101,6 +104,7 @@ public class YouTubeDataLoader {
                     }
                 }
 
+                // Breaking if it is the end
                 if (maxEvents > 0 && events.size() >= maxEvents) {
                     break;
                 }
@@ -116,40 +120,15 @@ public class YouTubeDataLoader {
     }
 
     /**
-     * Converting activity to Event
-     */
-    private Event convertToEvent(PlaylistItem item) throws IOException {
-        String videoId = item.getContentDetails().getVideoId();
-        String dateStr = item.getSnippet().getPublishedAt().toString();
-        LocalDate date = LocalDate.parse(dateStr, DateTimeFormatter.ISO_DATE_TIME);
-
-        Video video = getVideoDetails(videoId);
-        if (video == null) return null;
-
-        String youtubeCategoryId = video.getSnippet().getCategoryId();
-        int categoryIndex;
-        try {
-            categoryIndex = Integer.parseInt(youtubeCategoryId);
-        } catch (NumberFormatException e) {
-            return null;
-        }
-
-        int watchTime = (int) parseDuration(video.getContentDetails().getDuration());
-        return new Event(date, categoryIndex, watchTime);
-    }
-
-    /**
      * Getting information about video by its ID
      */
     private Video getVideoDetails(String videoId) throws IOException {
-        // ✅ Исправлено: Arrays.asList с раздельными строками
         VideoListResponse response = youtube.videos()
                 .list(Arrays.asList("snippet", "contentDetails"))
                 .setId(Collections.singletonList(videoId))
                 .execute();
 
         if (response.getItems() != null && !response.getItems().isEmpty()) {
-            // ✅ Исправлено: get(0) вместо getFirst()
             return response.getItems().get(0);
         }
         return null;

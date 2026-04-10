@@ -17,11 +17,11 @@ public class DataLoader {
 
     // Reading the file of categories
     public static void loadBasis(String filePath, int dimension) throws IOException {
-        // Пробуем загрузить из resources
+        // From resources
         InputStream is = DataLoader.class.getResourceAsStream("/" + filePath);
 
         if (is == null) {
-            // Пробуем из корня проекта
+            // From the root
             is = DataLoader.class.getClassLoader().getResourceAsStream(filePath);
         }
 
