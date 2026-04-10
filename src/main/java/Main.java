@@ -3,6 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+// Really cool bro
+// Fuck Wolfram Math
+
+
 class Main{
     static void main() throws IOException {
         try {
