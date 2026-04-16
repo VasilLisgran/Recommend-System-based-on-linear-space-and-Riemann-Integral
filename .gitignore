@@ -36,3 +36,4 @@ build/
 
 ### Mac OS ###
 .DS_Storesrc/main/resources/client-secret.json
+categories.txt
