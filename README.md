@@ -1,4 +1,4 @@
-# YouTube Interest Analyzer based on linear space, cosine and Riemann Integral Sums Decay
+# YouTube Interest Analyzer based on linear space and cosine with Integral (Riemann) Decay
 
 - [Introduction](#introduction)
 - [Mathematical Model](#mathematical-model)
@@ -7,7 +7,14 @@
     - [Category Space](#category-space)
     - [User Vector](#user-vector)
     - [Recommendations](#recommendations)
-- [Project Structure](#️-project-structure)
+- [Project Structure](#project-structure)
+    - [DataFlow](#data-flow)
+    - [YouTubeAuth](#youtube-auth)
+    - [YouTubeDataLoader](#youtube-data-loader)
+    - [CategoryRegistry](#category-registry)
+    - [Event](#event)
+    - [MyVector](#my-vector)
+    - [User](#user)
 
 
 # Introduction
@@ -29,6 +36,8 @@ and multiplication by a scalar is defined.
 3. **Similarity as angle** — cosine between vectors shows interest closeness
 
 ## Riemann Integral Sums: Complete Introduction
+
+---
 
 ### 1. Partition of an Interval
 
@@ -82,6 +91,7 @@ $$
 \lambda(\tau, \xi) = \lambda(\tau)
 $$
 
+---
 ### 3. Integral Sums
 
 **Definition:** Let a function $f$ be defined on the interval $[a; b]$. For an arbitrary tagged partition $(\tau, \xi)$ of the interval $[a; b]$, where:
@@ -106,9 +116,11 @@ where $\Delta x_i = x_i - x_{i-1}$.
 - Height = $f(\xi_i)$
 - Width = $\Delta x_i$
 
-# Category Space
+---
 
-### YouTube Category Mapping
+## Category Space
+
+### 1. YouTube Category Mapping
 
 Each YouTube video belongs to one of 17 content categories. The system uses the following mapping:
 
@@ -132,7 +144,9 @@ Each YouTube video belongs to one of 17 content categories. The system uses the 
 | 28 | Science & Technology | 15 |
 | 29 | Nonprofits & Activism | 16 |
 
-## Category as Basis Vector
+---
+
+### 2.  Category as Basis Vector
 
 Each category is represented as a **standard basis vector** in $\mathbb{R}^{17}$:
 
@@ -156,7 +170,9 @@ $$
 \mathbf{e}_{\text{Education}} = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0)
 $$
 
-### Linear Independence
+---
+
+### 3. Linear Independence
 
 The set of all category basis vectors $\{\mathbf{e}_1, \mathbf{e}_2, \dots, \mathbf{e}_{17}\}$ is **linearly independent**:
 
@@ -164,7 +180,9 @@ $$
 \alpha_1 \mathbf{e}_1 + \alpha_2 \mathbf{e}_2 + \dots + \alpha_{17} \mathbf{e}_{17} = \mathbf{0} \;\Rightarrow\; \alpha_1 = \alpha_2 = \dots = \alpha_{17} = 0
 $$
 
-### User Vector
+---
+
+### 4. User Vector
 
 #### The Decay Formula
 
@@ -231,4 +249,125 @@ public void calculateWithDecayAndDynamics(double lambda) {
     
     this.userVector = result;
 }
+```
 
+---
+
+# Project Structure
+
+### Data Flow
+
+| Step | Component |
+|------|-----------|
+| 1 | YouTube API |
+| 2 | PlaylistItem | 
+| 3 | Video Details |
+| 4 | Event |
+| 5 | Recommendation Engine |
+---
+
+## YoutubeAuth
+
+### Overview
+
+The `YouTubeAuth` class handles OAuth 2.0 authorization for YouTube API access. It implements the **Desktop Application flow** (Installed App), which opens a browser window for the user to log in and grant permissions.
+
+---
+
+### Class Structure
+
+#### Constants
+
+| Constant | Purpose |
+|----------|---------|
+| `CLIENT_SECRETS_PATH` | Path to the OAuth client secrets JSON file. Stores application credentials from Google Cloud Console |
+| `JSON_FACTORY` | Factory for JSON parsing (Jackson) |
+| `SCOPES` | List of permissions required from the user during authorization |
+
+### Scopes Used
+
+```java
+private static final List<String> SCOPES = List.of(
+    "https://www.googleapis.com/auth/youtube.readonly",
+    "https://www.googleapis.com/auth/youtube.force-ssl"
+);
+```
+
+---
+
+### Authentication Flow
+
+The `authenticate()` method executes the following steps:
+
+1. **HTTP Transport Setup** - Creates a trusted `NetHttpTransport` instance for API communication
+2. **Credentials Loading** - Reads OAuth client secrets from `client-secret.json` in classpath resources
+3. **Authorization Flow Creation** - Builds a `GoogleAuthorizationCodeFlow` with required permissions
+4. **Local Server Setup** - Spins up a `LocalServerReceiver` on port 8888 to catch the OAuth callback
+5. **User Authorization** - Launches browser, waits for user login/permission, exchanges code for tokens
+6. **YouTube Service** - Constructs and returns an authenticated `YouTube` API client
+
+---
+
+### Dependencies
+
+- Google OAuth Client Libraries
+- Jetty HTTP Server (for local callback receiver)
+- Jackson JSON Processor
+
+---
+
+## YouTubeDataLoader
+
+### Overview
+
+The YouTubeDataLoader class is responsible for fetching user interaction data from the YouTube API and converting it into standardized Event objects for the recommendation system. It serves as the bridge between YouTube's raw API responses and the system's internal data model.
+
+| Field | Type                                                            | Purpose                                                  |
+|----------|-----------------------------------------------------------------|----------------------------------------------------------|
+| `youtube` | YouTube                                                         | Authenticated YouTube API client instance |
+| `categoryRegistry` |         CategoryRegistry                 | Mapping utility for YouTube category IDs to human-readable names
+
+---
+
+### Fetch Liked Videos
+
+```java
+public List<Event> fetchLikedVideos(int maxEvents) throws IOException { }
+```
+
+1. **Playlist access** - Accessible special playlist "LL" (liked videos)
+2. **MaxResult** - Iterates through API response pages (50 items per page)
+3. **Video Metadata Extraction** - For each liked video: Video ID, title, Like timestamp (when the user liked the video)
+4. **Detailed Video Info** - Calls getVideoDetails() for additional metadata: Category ID, Category name, Video duration (converted from ISO format to minutes)
+5. **Event Creation** - Creates an Event object with: Like date (as LocalDate), Category ID, Watch time (video duration in minutes)
+
+--- 
+
+### Duration Parsing
+
+Converts YouTube's ISO 8601 duration format to minutes.
+
+#### Format Examples:
+
+1. "PT5M30S" → 5.5 minutes
+2. "PT1H2M10S" → 62.167 minutes
+3. "PT45S" → 0.75 minutes
+Algorithm:
+
+Strips the "PT" prefix
+Parses hours (H), minutes (M), and seconds (S) components
+Converts to decimal minutes
+
+---
+
+### Recommend Video
+
+Purpose: Searches and displays recommended videos based on top user interests.
+
+#### Process:
+
+Iterates through top category recommendations (sorted by weight)
+For each category, calculates the number of videos to fetch:
+- count = weight × 10
+- Performs a YouTube search for videos in that category
+- Prints video titles and URLs to console
