@@ -5,11 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44bd4614-ed45-44f1-9b7c-945d7c81e765" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/recommender/Api/YouTubeDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/recommender/Api/YouTubeDataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/recommender/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/recommender/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/recommender/Model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/recommender/Model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/recommender/JSON_Reader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/client-secret.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Recomendation System/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Recomendation System/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Recomendation System/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/recommender/Api/YouTubeAuth.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/recommender/Api/YouTubeDataLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/recommender/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/recommender/Model/CategoryRegistry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/recommender/Model/Event.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/recommender/Model/MyVector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/recommender/Model/User.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +32,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/recommender/Api/YouTubeDataLoader.java" root0="FORCE_HIGHLIGHTING" />
@@ -49,7 +57,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/vasil/Documents/MainSystem/Recomendation System&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/vasil/Documents/MainSystem/recommend&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
@@ -63,6 +71,17 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="recommend" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="recommend" />
+      <option name="filePath" />
+      <method v="2" />
     </configuration>
   </component>
   <component name="TaskManager">
