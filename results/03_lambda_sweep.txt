@@ -1,0 +1,63 @@
+lambda grid: [0.8, 0.9, 0.95, 0.98, 0.99, 0.995, 0.999]   reference=2026-08-26   window=360d
+
+--- u1 ---  distinct like-dates in window: 4, span: 35d
+  lambda  half-life  mean N_eff  mean N_eff/n
+   0.800       3.1d        1.58         0.607
+   0.900       6.6d        1.86         0.720
+   0.950      13.5d        2.00         0.740
+   0.980      34.3d        2.26         0.818
+   0.990      69.0d        2.32         0.837
+   0.995     138.3d        2.34         0.842
+   0.999     692.8d        2.34         0.844
+
+--- u2 ---  distinct like-dates in window: 70, span: 294d
+  lambda  half-life  mean N_eff  mean N_eff/n
+   0.800       3.1d        2.36         0.304
+   0.900       6.6d        2.61         0.333
+   0.950      13.5d        3.82         0.402
+   0.980      34.3d        8.34         0.524
+   0.990      69.0d       12.77         0.620
+   0.995     138.3d       14.89         0.668
+   0.999     692.8d       15.61         0.684
+
+--- u3 ---  distinct like-dates in window: 114, span: 357d
+  lambda  half-life  mean N_eff  mean N_eff/n
+   0.800       3.1d        5.89         0.218
+   0.900       6.6d        6.86         0.233
+   0.950      13.5d        9.55         0.269
+   0.980      34.3d       21.43         0.385
+   0.990      69.0d       32.36         0.489
+   0.995     138.3d       39.51         0.562
+   0.999     692.8d       43.31         0.607
+
+--- u4 ---  distinct like-dates in window: 21, span: 20d
+  lambda  half-life  mean N_eff  mean N_eff/n
+   0.800       3.1d        5.38         0.510
+   0.900       6.6d        8.77         0.689
+   0.950      13.5d       10.74         0.806
+   0.980      34.3d       11.53         0.856
+   0.990      69.0d       11.68         0.866
+   0.995     138.3d       11.72         0.869
+   0.999     692.8d       11.75         0.870
+
+--- u5 ---  distinct like-dates in window: 20, span: 20d
+  lambda  half-life  mean N_eff  mean N_eff/n
+   0.800       3.1d        3.86         0.557
+   0.900       6.6d        5.63         0.693
+   0.950      13.5d        6.83         0.780
+   0.980      34.3d        7.39         0.821
+   0.990      69.0d        7.50         0.829
+   0.995     138.3d        7.53         0.832
+   0.999     692.8d        7.55         0.833
+
+--- u6 ---  distinct like-dates in window: 47, span: 47d
+  lambda  half-life  mean N_eff  mean N_eff/n
+   0.800       3.1d        3.07         0.314
+   0.900       6.6d        4.57         0.421
+   0.950      13.5d        6.87         0.598
+   0.980      34.3d        8.74         0.730
+   0.990      69.0d        9.11         0.753
+   0.995     138.3d        9.18         0.757
+   0.999     692.8d        9.18         0.756
+
+written: sweep_lambda.json
