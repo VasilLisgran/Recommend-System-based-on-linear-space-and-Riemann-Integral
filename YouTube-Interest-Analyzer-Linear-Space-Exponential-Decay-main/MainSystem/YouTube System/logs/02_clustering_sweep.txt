@@ -1,0 +1,49 @@
+eps grid: [0.3, 0.4, 0.45, 0.51, 0.6, 0.7]   min_samples=2
+account    method            clusters   noise  silhouette  coverage
+----------------------------------------------------------------------
+  [loading LaBSE once]
+    [hdbscan] Music                  n=  175 clusters=  37 noise=0.32 sil=0.335
+    [hdbscan] People & Blogs         n=  278 clusters=  51 noise=0.44 sil=0.230
+    [hdbscan] Sports                 n=   73 clusters=  17 noise=0.37 sil=0.437
+    [hdbscan] Entertainment          n=   71 clusters=  15 noise=0.42 sil=0.277
+    [hdbscan] Education              n=   89 clusters=  16 noise=0.45 sil=0.287
+    [hdbscan] Comedy                 n=   37 clusters=   5 noise=0.35 sil=0.157
+    [hdbscan] Travel & Events        n=   10 clusters=   2 noise=0.50 sil=0.124
+    [hdbscan] Gaming                 n=   47 clusters=  10 noise=0.30 sil=0.267
+    [hdbscan] Autos & Vehicles       n=    5 clusters=   2 noise=0.00 sil=0.185
+    [hdbscan] Howto & Style          n=    8 clusters=   3 noise=0.00 sil=0.203
+    [hdbscan] Science & Technology   n=   10 clusters=   0 noise=1.00 sil=n/a
+    [hdbscan] Film & Animation       n=   11 clusters=   2 noise=0.55 sil=0.482
+    [hdbscan] News & Politics        n=   13 clusters=   2 noise=0.15 sil=0.182
+u2         DBSCAN eps=0.3          63    0.86       0.674      0.14
+u2         DBSCAN eps=0.4          78    0.79       0.497      0.21
+u2         DBSCAN eps=0.45         77    0.73       0.382      0.27
+u2         DBSCAN eps=0.51         65    0.60       0.231      0.40
+u2         DBSCAN eps=0.6          28    0.37       0.260      0.63
+u2         DBSCAN eps=0.7          15    0.15       0.367      0.85
+u2         HDBSCAN                162    0.37       0.264      0.63
+
+    [hdbscan] Entertainment          n=  476 clusters=  99 noise=0.43 sil=0.294
+    [hdbscan] People & Blogs         n= 1716 clusters= 299 noise=0.47 sil=0.319
+    [hdbscan] Film & Animation       n=   82 clusters=  13 noise=0.38 sil=0.415
+    [hdbscan] Comedy                 n=  204 clusters=  41 noise=0.42 sil=0.345
+    [hdbscan] Music                  n=  373 clusters=  79 noise=0.38 sil=0.261
+    [hdbscan] Gaming                 n=  422 clusters=  82 noise=0.45 sil=0.307
+    [hdbscan] Howto & Style          n=   53 clusters=  13 noise=0.30 sil=0.230
+    [hdbscan] Education              n=  219 clusters=  39 noise=0.48 sil=0.458
+    [hdbscan] Sports                 n=  508 clusters=  85 noise=0.57 sil=0.331
+    [hdbscan] Autos & Vehicles       n=   49 clusters=  10 noise=0.31 sil=0.173
+    [hdbscan] Science & Technology   n=   45 clusters=   8 noise=0.36 sil=0.123
+    [hdbscan] Travel & Events        n=   47 clusters=   8 noise=0.60 sil=0.230
+    [hdbscan] News & Politics        n=   33 clusters=   2 noise=0.03 sil=0.035
+    [hdbscan] Nonprofits & Activism  n=   63 clusters=  11 noise=0.40 sil=0.333
+    [hdbscan] Pets & Animals         n=    9 clusters=   2 noise=0.00 sil=0.115
+u3         DBSCAN eps=0.3         264    0.83       0.538      0.17
+u3         DBSCAN eps=0.4         332    0.69       0.364      0.31
+u3         DBSCAN eps=0.45        254    0.60       0.218      0.40
+u3         DBSCAN eps=0.51        127    0.46       0.123      0.54
+u3         DBSCAN eps=0.6          38    0.18       0.102      0.82
+u3         DBSCAN eps=0.7          16    0.02       0.122      0.98
+u3         HDBSCAN                791    0.37       0.265      0.63
+
+written: sweep_clustering.json

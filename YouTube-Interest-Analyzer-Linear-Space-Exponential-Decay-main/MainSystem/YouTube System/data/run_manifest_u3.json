@@ -1,0 +1,16 @@
+{
+  "user_id" : "u3",
+  "reference_date" : "2026-08-26",
+  "lambda" : 0.95,
+  "half_life_days" : 13.513407333964874,
+  "max_days" : 360,
+  "weight_scheme" : "ORIGINAL",
+  "top_n_categories" : 3,
+  "n_events" : 4299,
+  "n_categories_clustered" : 14,
+  "n_clusters_total" : 125,
+  "search_budget" : 20,
+  "searches_used" : 14,
+  "quota_exhausted" : false,
+  "generated_at" : "2026-08-26T18:20:09.909312Z"
+}

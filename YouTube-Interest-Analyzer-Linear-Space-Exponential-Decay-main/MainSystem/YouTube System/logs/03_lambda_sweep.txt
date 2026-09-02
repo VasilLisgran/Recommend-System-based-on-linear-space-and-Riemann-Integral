@@ -1,0 +1,44 @@
+lambda grid: [0.8, 0.9, 0.95, 0.98, 0.99, 0.995, 0.999]   reference=2026-08-26   window=360d   weight_scheme=continuous_log
+
+--- u1 ---  distinct like-dates in window: 4, span: 35d
+  lambda  half-life  mean N_eff  mean N_eff/n
+   0.800       3.1d        1.44         0.540
+   0.900       6.6d        1.79         0.691
+   0.950      13.5d        2.18         0.837
+   0.980      34.3d        2.42         0.908
+   0.990      69.0d        2.47         0.918
+   0.995     138.3d        2.48         0.918
+   0.999     692.8d        2.48         0.916
+
+--- u2 ---  distinct like-dates in window: 70, span: 294d
+  lambda  half-life  mean N_eff  mean N_eff/n
+   0.800       3.1d        3.28         0.326
+   0.900       6.6d        3.92         0.393
+   0.950      13.5d        5.29         0.473
+   0.980      34.3d       14.25         0.669
+   0.990      69.0d       22.21         0.837
+   0.995     138.3d       25.52         0.918
+   0.999     692.8d       26.58         0.947
+
+--- u3 ---  distinct like-dates in window: 114, span: 357d
+  lambda  half-life  mean N_eff  mean N_eff/n
+   0.800       3.1d        7.59         0.228
+   0.900       6.6d        9.05         0.256
+   0.950      13.5d       13.05         0.307
+   0.980      34.3d       35.98         0.517
+   0.990      69.0d       57.12         0.716
+   0.995     138.3d       70.15         0.851
+   0.999     692.8d       76.98         0.932
+
+--- u7 ---  distinct like-dates in window: 1, span: 0d   [BURST: no temporal signal]
+  lambda  half-life  mean N_eff  mean N_eff/n
+   0.800       3.1d        2.99         0.997
+   0.900       6.6d        2.99         0.997
+   0.950      13.5d        2.99         0.997
+   0.980      34.3d        2.99         0.997
+   0.990      69.0d        2.99         0.997
+   0.995     138.3d        2.99         0.997
+   0.999     692.8d        2.99         0.997
+
+BURST accounts (exclude from any temporal-decay claim): u7
+written: sweep_lambda.json

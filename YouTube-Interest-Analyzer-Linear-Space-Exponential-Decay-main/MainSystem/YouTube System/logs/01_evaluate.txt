@@ -1,0 +1,38 @@
+  [loading LaBSE once, reused for all users/seeds]
+[ok] ../data/user_videos_u2.json: n=828
+[ok] ../data/user_videos_u3.json: n=4221
+
+=== embedder=labse  algorithm=dbscan  dedup=title  seeds=20  accounts=2 ===
+method                            acc        bal.acc        macroF1          kappa
+majority                  0.368±0.040    0.072±0.007    0.038±0.001    0.000±0.000
+random                    0.196±0.020    0.066±0.000    0.065±0.002   -0.005±0.010
+keyword (proposed)        0.427±0.011    0.217±0.008    0.236±0.005    0.207±0.031
+centroid                  0.350±0.081    0.345±0.011    0.262±0.014    0.268±0.060
+kNN                       0.500±0.006    0.296±0.005    0.302±0.015    0.361±0.008
+logreg                    0.380±0.073    0.337±0.016    0.282±0.027    0.288±0.050
+
+--- keyword method: coverage vs. precision within coverage ---
+  fallback-to-majority : 56.3% ± 6.4% of test items
+  coverage (fired)     : 43.7% ± 6.4%
+  accuracy when fired  : 0.457 ± 0.097
+  majority on same set : 0.328 ± 0.000
+  lift within coverage : +0.129  wins=2/2
+  overall accuracy      : 0.427  (mixes fired predictions with fallbacks; do not attribute to the method)
+
+--- per-account accuracy ---
+user_videos_u2.json  majority=0.339  random=0.182  keyword=0.434  centroid=0.408  kNN=0.496  logreg=0.431  fallback=51.7%
+user_videos_u3.json  majority=0.396  random=0.210  keyword=0.419  centroid=0.293  kNN=0.504  logreg=0.328  fallback=60.8%
+
+--- paired Wilcoxon across 2 accounts (smallest attainable p = 0.5000) ---
+  [acc]
+    keyword (proposed)   vs majority             diff=+0.059  wins=2/2  p=0.5000
+    kNN                  vs keyword (proposed)   diff=+0.073  wins=2/2  p=0.5000
+    logreg               vs keyword (proposed)   diff=-0.047  wins=0/2  p=0.5000
+    centroid             vs keyword (proposed)   diff=-0.077  wins=0/2  p=0.5000
+  [bacc]
+    keyword (proposed)   vs majority             diff=+0.146  wins=2/2  p=0.5000
+    kNN                  vs keyword (proposed)   diff=+0.079  wins=2/2  p=0.5000
+    logreg               vs keyword (proposed)   diff=+0.119  wins=2/2  p=0.5000
+    centroid             vs keyword (proposed)   diff=+0.127  wins=2/2  p=0.5000
+
+written: results_labse_dbscan_title.json
